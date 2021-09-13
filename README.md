@@ -1,5 +1,4 @@
-# app
-
+# Vuex-Serie
 ## Project setup
 ```
 npm install
