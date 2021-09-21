@@ -20,6 +20,13 @@ export default {
         return todo.id != removeId;
       });
     },
+    updateTodo(state, todo) {
+      state.todos.forEach((t) => {
+        if (t.id === todo.id) {
+          t = todo;
+        }
+      });
+    },
   },
   actions: {
     async getTodos({ commit }) {
@@ -45,6 +52,13 @@ export default {
         `https://jsonplaceholder.typicode.com/todos?_limit=${limit}`
       );
       context.commit("setTodos", res.data);
+    },
+    async updateTodo(context, todo) {
+      let res = await axios.put(
+        `https://jsonplaceholder.typicode.com/todos/${todo.id}`,
+        todo
+      );
+      context.commit("updateTodo", res.data);
     },
   },
 };
